@@ -13,16 +13,26 @@ func (g *Game) Update() error {
 }
 
 func (g *Game) Draw(screen *ebiten.Image) {
-	ebitenutil.DebugPrint(screen, "Hello, World!")
+	ebitenutil.DebugPrint(screen, "BlokusAI")
 }
 
-func (g *Game) Layout(outsideWidth, outsideHeight int) (screenWidth, screenHeight int) {
-	return 320, 240
+func (g *Game) Layout(outsideWidth int, outsideHeight int) (screenWidth int, screenHeight int) {
+	return 400, 400
+}
+
+var tanSquareImage *ebiten.Image
+
+func initiateImages() {
+	var err error
+	tanSquareImage, _, err = ebitenutil.NewImageFromFile("tan_square.png")
+	if err != nil {
+		log.Fatal(err)
+	}
 }
 
 func main() {
-	ebiten.SetWindowSize(640, 480)
-	ebiten.SetWindowTitle("Hello, World!")
+	ebiten.SetWindowSize(800, 800)
+	ebiten.SetWindowTitle("BlokusAI")
 	if err := ebiten.RunGame(&Game{}); err != nil {
 		log.Fatal(err)
 	}
