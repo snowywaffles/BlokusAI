@@ -21,13 +21,17 @@ func draw14x14GridWithValues(valueInCell map[int]string) error {
 	fmt.Println()
 	fmt.Println(horizontalDisplayLine) // to make the grid look nice (for formatting purposes)
 
-	cyan := color.New(color.Cyan)
-	cyan.Printf(" %-4s |", valueInCell[cellNumber])
+	cyan := color.New(color.FgCyan)
 
 	for i := 0; i <= 13; i++ {
 		fmt.Printf("|")
 		for i := 0; i <= 13; i++ {
-			fmt.Printf(" %-4s |", valueInCell[cellNumber])
+			if valueInCell[cellNumber] == "W" { // support for custom colors!
+				cyan.Printf(" %-4s", valueInCell[cellNumber])
+			} else {
+				fmt.Printf(" %-4s", valueInCell[cellNumber])
+			}
+			fmt.Printf(" |")
 			cellNumber++
 		}
 		fmt.Println()
